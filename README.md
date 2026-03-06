@@ -72,7 +72,7 @@ The list of users who have signed up are stored via AsyncStorage, as well as the
 
 ## Form validation and errors with Formik/Yup
 
-Validation is done via Formik, which serves as the central source of truth for the form's values and error messages. The validation rules are written with Yup, which allow error messages for each violation to be specified easily.
+Validation is done via Formik, which serves as the central source of truth for the form's values and error messages. The validation rules are written with Yup, which allow error messages for each violation to be specified easily. It is particularly useful because it handles the validation of the form regardless of how the user interacts with it through the `touched` property it exposes. It also saves me from having to write multiple `useState`s in the app, which improves readability.
 
 ## Navigation via React Navigation
 

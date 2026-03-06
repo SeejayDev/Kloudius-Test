@@ -6,19 +6,33 @@
  */
 
 import { NewAppScreen } from '@react-native/new-app-screen';
+import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import { KeyboardProvider } from 'react-native-keyboard-controller';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import { AuthContext, useAuthContextValue } from './src/contexts/AuthContext';
+import { SystemBars } from 'react-native-edge-to-edge';
+import AppRouter from './AppRouter';
+import AppPreloader from './AppPreloader';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
+  const authContext = useAuthContextValue();
+
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
+      <KeyboardProvider>
+        <NavigationContainer>
+          <AuthContext value={authContext}>
+            <SystemBars style="dark" />
+            <AppPreloader />
+          </AuthContext>
+        </NavigationContainer>
+      </KeyboardProvider>
     </SafeAreaProvider>
   );
 }

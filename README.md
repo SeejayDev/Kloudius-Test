@@ -1,8 +1,8 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
-
 # Getting Started
 
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+
+This project is a basic React-Native CLI application. After cloning the repository, run `yarn install` to install the packages required by the app. From there, just follow the usual steps to run the app as shown below.
 
 ## Step 1: Start Metro
 
@@ -11,10 +11,7 @@ First, you will need to run **Metro**, the JavaScript build tool for React Nativ
 To start the Metro dev server, run the following command from the root of your React Native project:
 
 ```sh
-# Using npm
-npm start
-
-# OR using Yarn
+# Using Yarn
 yarn start
 ```
 
@@ -25,10 +22,7 @@ With Metro running, open a new terminal window/pane from the root of your React 
 ### Android
 
 ```sh
-# Using npm
-npm run android
-
-# OR using Yarn
+# Using Yarn
 yarn android
 ```
 
@@ -51,10 +45,7 @@ bundle exec pod install
 For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
 
 ```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
+# Using Yarn
 yarn ios
 ```
 
@@ -62,36 +53,31 @@ If everything is set up correctly, you should see your new app running in the An
 
 This is one way to run your app — you can also build it directly from Android Studio or Xcode.
 
-## Step 3: Modify your app
+# Implemented Features
 
-Now that you have successfully run the app, let's make changes!
+Four screens in total are implemented.
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+1. Splash Screen: To represent the initial loading of the app while the app is checking if there was previously a logged in user.
+2. Login Screen: For the user to log in.
+3. Signup Screen: For the user to create a new account.
+4. Home Screen: For the user to view their email address and name.
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+## Authentication with Context API
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+The user's state is stored in the `AuthContext` along with the other helper functions such as `login`, `logout`, and `signup`. These functions are used by the different screens in the navigation stack via the `useContext` hook.
 
-## Congratulations! :tada:
+## Storage with AsyncStorage
 
-You've successfully run and modified your React Native App. :partying_face:
+The list of users who have signed up are stored via AsyncStorage, as well as the previously logged in user. The functions in the `AuthContext` are a wrapper for the AsyncStorage actions, as they handle the parsing and formatting of the stored values before passing it back to the app.
 
-### Now what?
+## Form validation and errors with Formik/Yup
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+Validation is done via Formik, which serves as the central source of truth for the form's values and error messages. The validation rules are written with Yup, which allow error messages for each violation to be specified easily.
 
-# Troubleshooting
+## Navigation via React Navigation
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+Navigating between screens is done with React Navigation's Native Stack navigator. The React-Native edge-to-edge library was also installed to make the navigation header occupy the space behind the status bar.
 
-# Learn More
+## Animation with Reanimated
 
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+A basic animation wrapper was created to make elements spin in place, such as the loading animation of the buttons. It is also used by the `keyboard-controller` package to provide a smoother keyboard experience than the regular React-Native keyboard handling.

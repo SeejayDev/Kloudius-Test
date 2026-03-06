@@ -4,6 +4,8 @@
 
 This project is a basic React-Native CLI application. After cloning the repository, run `yarn install` to install the packages required by the app. From there, just follow the usual steps to run the app as shown below.
 
+Video demonstration available on: https://youtu.be/i2szwXlzoZA.
+
 ## Step 1: Start Metro
 
 First, you will need to run **Metro**, the JavaScript build tool for React Native.
